@@ -1,0 +1,37 @@
+  <nav th:fragment="principal-menu" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">EmpleosApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/inicio">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Menu 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Menu 2</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Vacantes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="../vacantes/crear">Crear Vacante</a>
+          <a class="dropdown-item" href="../vacantes/listar" >Lista de Vacantes</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+                      
+          </ul>  
+          <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
+          <a class="btn btn-primary" href="#">Registrarse</a>
+        </div>
+      </nav>
+
+

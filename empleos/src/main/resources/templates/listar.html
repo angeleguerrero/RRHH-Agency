@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- BTSP -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+
+<meta charset="ISO-8859-1">
+<title>Lista de Vacantes</title>
+</head>
+<body>
+	<header th:insert="fragments/menu :: principal-menu"> </header>
+	<div class="jumbotron ">
+		<h1 align="center">Listados de Vacantes</h1>
+		<img th:src="@{/images/jobs_listar.jpg}"
+			class="rounded mx-auto d-block" width="150" height="130" center>
+	</div>
+	<table class="table table-hover table-bordered">
+		<thead class="thead-dark">
+			<tr>
+				<th>Empresa</th>
+				<th>ID</th>
+				<th>Nombre Vacante</th>
+				<th>Fecha Publicacion</th>
+				<th>Salario</th>
+				<th>Descripcion</th>
+				<th>Destacada</th>
+				<th>Detalle</th>
+				<th>Borrar</th>
+
+			</tr>
+		</thead>
+
+		<tr th:each="tempVacante:${vacantes}">
+			<td><img
+				th:src="@{/images/{tempImg}(tempImg=${tempVacante.imagenlistar})}"
+				width="130" height="120"></td>
+			<td th:text="${tempVacante.id}"></td>
+			<td th:text="${tempVacante.nombre}"></td>
+			<td th:text="${tempVacante.fecha}"></td>
+			<td th:text="${tempVacante.salario}"></td>
+			<td th:text="${tempVacante.descripcion}"></td>
+			<!--     <td th:text="${tempVacante.destacado}"></td> 
+			<td th:text="${tempVacante.destacado == 1 ? 'Si' : 'No'}"></td>-->
+			<td><span th:if="${tempVacante.destacado==1}"
+				class="badge badge-success"> Si </span> <span
+				th:unless="${tempVacante.destacado==1}" class="badge badge-danger">
+					No </span></td>
+
+			<td><a
+				th:href="@{/vacantes/viewe/{idvacante} (idvacante=${tempVacante.id})}"
+				class="btn btn-success">Detalles</a></td>
+
+			<td><a
+				th:href="@{/vacantes/eliminar(idvacante=${tempVacante.id})}"
+				class="btn btn-danger">Eliminar</a></td>
+
+
+		</tr>
+
+	</table>
+
+	<!-- JS -->
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+
+
+	<footer th:insert="fragments/footer :: footer" class="footer">
+
+	</footer>
+
+
+</body>
+</html>

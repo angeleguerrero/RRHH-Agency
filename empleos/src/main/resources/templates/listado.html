@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Listado de Ofertas de Trabajo</title>
+<h1>Vancate Disponibles</h1>
+
+<ol>
+
+<li th:each="tmpEmp:${empleos}" th:text="${tmpEmp}"> 
+
+</li>
+
+</ol>
+
+<tr></tr>
+
+
+</head>
+<body>
+
+</body>
+</html>
