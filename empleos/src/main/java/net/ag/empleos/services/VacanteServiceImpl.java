@@ -35,6 +35,7 @@ public class VacanteServiceImpl implements IVacanteService{
 			vacante2.setDescripcion("Solicitamos Ing. en Sistemas para diseñar Software de Ventas");
 			vacante2.setFecha(sdf_fp.parse("30-04-2020"));
 			vacante2.setSalario(80000.0);
+			vacante2.setEstatus("Activo");
 			vacante2.setDestacado(1);
 			vacante2.setImagenlistar("ing-sistemas.jpg");
 			

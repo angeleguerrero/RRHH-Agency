@@ -3,8 +3,8 @@ package net.ag.empleos.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,18 +16,25 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import net.ag.empleos.model.Vacante;
+import net.ag.empleos.services.ICategoriaService;
 import net.ag.empleos.services.IVacanteService;
+import net.ag.empleos.util.Utileria;
 
 @Controller
-@RequestMapping("/vacantes")
+@RequestMapping(value = "vacantes")
 public class VacantesController {
+	@Value("${empleosapp.ruta.imagenes}")
+	private String ruta;
 
 	@Autowired
 	private IVacanteService serviceVacantes;
+	@Autowired
+	private ICategoriaService serviceCategoria;
 
 	@GetMapping("/viewe/{idvacante}")
 	public String verDetalles(@PathVariable("idvacante") int idVacante, Model model) {
@@ -41,14 +48,30 @@ public class VacantesController {
 	
 
 	@PostMapping("/salvar")
-	public String salvar( Vacante vacante, BindingResult result, RedirectAttributes atributes){ 
+	public String salvar( Vacante vacante, BindingResult result, RedirectAttributes atributes, @RequestParam("archivoImagen")
+	MultipartFile multipart){ 
+		// Verificar Errores
 		if(result.hasErrors()) {
 			for(ObjectError error: result.getAllErrors()) {
 				System.err.println("Ocurrio un error Trarando de convertir un valor: " + error.getDefaultMessage());
+				
 			}
-			
 			return "vacantes/formVacante";	
 		}
+		
+		//If Subir Imagen
+		if (!multipart.isEmpty()) {
+			//String ruta = "/empleos/omg-vacantes/"; //Ruta para Linux y MAC IOS
+			// OLD CODE String ruta = "c:/Users/HELLAS/Spring workspace/empleos/img-vacantes/";
+			
+			String nombreImagen = Utileria.guardarArchivo(multipart, ruta);
+			if (nombreImagen !=null) {//Verificar si la imagen cargo a la direccion
+				//Se procesa la variable nombreImagen
+				vacante.setImagenlistar(nombreImagen);	
+			}
+		}
+		
+		
 		serviceVacantes.salvar(vacante);
 		atributes.addFlashAttribute("msj", "Registro Salvado con Exito!");
 		
@@ -68,7 +91,8 @@ public class VacantesController {
 	}
 
 	@GetMapping("/crear")
-	public String crearVancante(Vacante vacante) {
+	public String crearVancante(Vacante vacante, Model model) {
+		model.addAttribute("categorias", serviceCategoria.buscarTCategorias());
 		return "vacantes/formVacante";
 	}
 	
@@ -79,7 +103,7 @@ public class VacantesController {
 		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));	
 	}
 	
-	@RequestMapping("/listar")
+	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public String mostrarIndex(Model model) {
 		List<Vacante> lista = serviceVacantes.buscarTodas();
 		model.addAttribute("vacantes", lista);

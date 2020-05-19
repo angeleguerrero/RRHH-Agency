@@ -29,7 +29,7 @@
           <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
           <div class="card-body">
           
-            <form th:action="@{/vacantes/salvar}" method="post" th:object="${vacante}"> 
+            <form th:action="@{/vacantes/salvar}" method="post" th:object="${vacante}" enctype="multipart/form-data"   > 
             
             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>           
 				Favor Verificar los siguientes errores: ==>
@@ -42,13 +42,13 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Titulo de la oferta de trabajo" required="required">
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Titulo de la oferta de trabajo" required="required">
                   </div>
                 </div>
                 <div class="col-md-9"> 
                   <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Breve descripcion de la oferta de trabajo" required="required">
+                    <input type="text" class="form-control" th:field="*{descripcion}" id="descripcion" name="descripcion" placeholder="Breve descripcion de la oferta de trabajo" required="required">
                   </div> 
                 </div>    
               </div>    
@@ -56,12 +56,11 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="categoria">Categoría</label>
-                    <select class="form-control" name="categoria" id="categoria">
-                      <option value="1">Ventas</option>
-                      <option value="2">Contabilidad</option>
-                      <option value="3">Transporte</option>
-                      <option value="4">Informatica</option>
-                      <option value="5">Construccion</option>
+                    <select class="form-control" th:field="*{categoria.id}" name="categoria">
+                      <option th:each="tempCategorias : ${categorias}" 
+                      th:value="${tempCategorias.id}" 
+                      th:text="${tempCategorias.nombre}">Ventas</option>
+<!--                       <option value="2">Contabilidad</option> -->
                     </select>
                   </div>
                 </div>
@@ -69,7 +68,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="estatus">Estatus</label>
-                    <select class="form-control" name="estatus" id="estatus">
+                    <select class="form-control" th:field="*{estatus}"  name="estatus" id="estatus">
 					  <option value="Creada">Creada</option>
                       <option value="Aprobada">Aprobada</option>
                       <option value="Eliminada">Eliminada</option>	
@@ -79,17 +78,17 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="fecha">Fecha de Publicación</label>
-                    <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha de publicacion" required="required">
+                    <input type="text" class="form-control" th:field="*{fecha}"  name="fecha" id="fecha" placeholder="Fecha de publicacion" required="required">
                   </div>  
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-check">
                     <label class="form-check-label" for="destacado0"></label><br>
-                    <input class="form-check-input" type="radio" name="destacado" id="destacado" value="1" checked="checked">
+                    <input class="form-check-input" type="radio" th:field="*{destacado}"  name="destacado" id="destacado" value="1" checked="checked">
                     <label class="form-check-label" for="destacado1">Destacado</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="destacado" id="destacado" value="0">
+                    <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="0">
                     <label class="form-check-label" for="destacado2">No Destacado</label>
                   </div>
                 </div>
@@ -98,7 +97,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="salario">Salario Ofrecido (Aprox)</label>
-                    <input type="text" class="form-control" name="salario" id="salario" placeholder="Salario aproximado." required="required">
+                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado." required="required">
                   </div>
                 </div>
                 <div class="col-md-3"> 
@@ -113,7 +112,7 @@
                 <div class="col-md-9"> 
                   <div class="form-group">
                     <label for="detalles"><strong>Detalles</strong></label>          
-                    <textarea class="form-control" name="detalles" id="detalles" rows="7"></textarea>
+                    <textarea class="form-control" th:field="*{detalles}" name="detalles" id="detalles" rows="7"></textarea>
                   </div> 
                 </div> 
                 <div class="col-md-3">
@@ -139,7 +138,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script th:src="@{bootstrap/js/bootstrap.min.js}"></script>    
-    <script th:src="@{tinymce/tinymce.min.js}"></script>
+  <script th:src="@{/tinymce/tinymce.min.js}"></script> 
+  
+
     <script>
       
       $(function () {
@@ -147,7 +148,7 @@
         }
       );
       
-      /*
+      
       tinymce.init({
           selector: '#detalles',
           plugins: "textcolor, table lists code",
@@ -155,7 +156,7 @@
                     | bullist numlist outdent indent | forecolor backcolor table code"
       });
       
-      */
+      
       
     </script>
   </body>

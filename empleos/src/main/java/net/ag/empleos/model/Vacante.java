@@ -11,11 +11,18 @@ double salario;
 private String estatus;
 private String detalles;
 private Integer destacado;
-private String imagenlistar="no-imagen.png";
+private String imagenlistar;
+private Categoria categoria;
 
 
 
 
+public Categoria getCategoria() {
+	return categoria;
+}
+public void setCategoria(Categoria categoria) {
+	this.categoria = categoria;
+}
 public String getEstatus() {
 	return estatus;
 }
@@ -70,13 +77,14 @@ public double getSalario() {
 public void setSalario(double salario) {
 	this.salario = salario;
 }
-
 @Override
 public String toString() {
 	return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
 			+ ", salario=" + salario + ", estatus=" + estatus + ", detalles=" + detalles + ", destacado=" + destacado
-			+ ", imagenlistar=" + imagenlistar + "]";
+			+ ", imagenlistar=" + imagenlistar + ", categoria=" + categoria + "]";
 }
+
+
 
 
 

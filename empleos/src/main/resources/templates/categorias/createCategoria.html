@@ -27,12 +27,22 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos de la categoría</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/categorias/salvar}" method="post">              
+          
+            <form th:action="@{/categorias/salvar}" method="post" th:object="${categorias}">  
+            
+<!--             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>            -->
+<!-- 				Favor Verificar los siguientes errores: ==> -->
+<!--             <ul> -->
+<!--             <li th:each="error : ${#fields.errors('*')}" th:text="${error}"/> -->
+<!--             </ul> -->
+<!--             </div> -->
+            
+                        
               <div class="row">
                 <div class="col-md-6"> 
                   <div class="form-group">
                     <label for="categoria">Categoria</label>
-                    <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Ingrese la categoria" required="required">
+                    <input type="text" class="form-control" id="categoria" name="nombre" placeholder="Ingrese la categoria" required="required">
                   </div>
                 </div>                
               </div> 
