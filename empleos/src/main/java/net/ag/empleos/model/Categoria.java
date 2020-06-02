@@ -1,6 +1,21 @@
 package net.ag.empleos.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Categorias")
 public class Categoria {
+	
+@Id
+//ID AUTOINCREMENTABLE MYSQL
+@GeneratedValue(strategy =GenerationType.IDENTITY )
+
+
 private int id;
 private String nombre;
 private String descripcion;

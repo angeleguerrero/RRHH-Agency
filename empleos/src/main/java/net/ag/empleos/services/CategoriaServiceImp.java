@@ -3,11 +3,13 @@ package net.ag.empleos.services;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import net.ag.empleos.model.Categoria;
 
 @Service
+//@Primary
 public class CategoriaServiceImp implements ICategoriaService{
 private List<Categoria> lista =null;
 

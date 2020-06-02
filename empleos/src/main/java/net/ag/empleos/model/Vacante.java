@@ -2,7 +2,21 @@ package net.ag.empleos.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "vacantes")
 public class Vacante {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 private int id;
 private String nombre;
 private String descripcion;
@@ -11,7 +25,12 @@ double salario;
 private String estatus;
 private String detalles;
 private Integer destacado;
-private String imagenlistar;
+private String imagenlistar="escuela.png";
+/*Ignorar atribito para futuro Mapeo*/
+//@Transient
+@OneToOne
+//idCategoria Nombre campo de llave foranea
+@JoinColumn(name = "idCategoria")
 private Categoria categoria;
 
 
@@ -20,6 +39,7 @@ private Categoria categoria;
 public Categoria getCategoria() {
 	return categoria;
 }
+
 public void setCategoria(Categoria categoria) {
 	this.categoria = categoria;
 }

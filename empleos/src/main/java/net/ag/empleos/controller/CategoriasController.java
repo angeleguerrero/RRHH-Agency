@@ -3,6 +3,7 @@ package net.ag.empleos.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import net.ag.empleos.services.ICategoriaService;
 @RequestMapping(value = "categorias")
 public class CategoriasController {
 	@Autowired
+	//@Qualifier("categoriasServicejpa") mismo uso que @primary pero debo agragar service en cada implementacion
 	 private ICategoriaService serviceCategoria;
 	
 	
