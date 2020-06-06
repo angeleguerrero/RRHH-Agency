@@ -29,7 +29,8 @@ import net.ag.empleos.util.Utileria;
 @Controller
 @RequestMapping(value = "vacantes")
 public class VacantesController {
-	@Value("${empleosapp.ruta.imagenes}")
+	//nombre propiedad para ruta imagenes
+	@Value("${empleos.ruta.imagenes}")
 	private String ruta;
 
 	@Autowired
@@ -50,13 +51,12 @@ public class VacantesController {
 	
 
 	@PostMapping("/salvar")
-	public String salvar( Vacante vacante, BindingResult result, RedirectAttributes atributes, @RequestParam("archivoImagen")
+	public String salvar( Vacante vacante, BindingResult result, RedirectAttributes atributes, @RequestParam("archivoImagen")//archivoImagen mismo nombre de campo en form
 	MultipartFile multipart){ 
 		// Verificar Errores
 		if(result.hasErrors()) {
 			for(ObjectError error: result.getAllErrors()) {
 				System.err.println("Ocurrio un error Trarando de convertir un valor: " + error.getDefaultMessage());
-				
 			}
 			return "vacantes/formVacante";	
 		}
@@ -69,7 +69,8 @@ public class VacantesController {
 			String nombreImagen = Utileria.guardarArchivo(multipart, ruta);
 			if (nombreImagen !=null) {//Verificar si la imagen cargo a la direccion
 				//Se procesa la variable nombreImagen
-				vacante.setImagenlistar(nombreImagen);	
+			
+				vacante.setImagen(nombreImagen);	
 			}
 		}
 		

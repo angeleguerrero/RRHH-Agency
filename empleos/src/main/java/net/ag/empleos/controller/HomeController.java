@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import net.ag.empleos.model.Vacante;
 import net.ag.empleos.services.IVacanteService;
@@ -22,13 +23,20 @@ public class HomeController {
 private  IVacanteService serviceVacantes;
 
 
-
+//HOME OLD
 	@GetMapping({"inicio","/"})
 	public String mostratHome (Model model) {
-		List<Vacante> lista = serviceVacantes.buscarTodas();
-		model.addAttribute("vacantes", lista);
-		return "home";
+				return "home";
 	}
+	
+	
+	//Modelo Atributo general
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("vacantes", serviceVacantes.buscarDestacadas());
+		
+	}
+	
 	
 	@GetMapping("/listado")
 	public String mostratListado(Model model) {

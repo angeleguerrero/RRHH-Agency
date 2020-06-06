@@ -4,10 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
+
+
 import org.springframework.stereotype.Service;
 import net.ag.empleos.model.Vacante;
 
 @Service
+//@Primary
 public class VacanteServiceImpl implements IVacanteService{
 	private List<Vacante> lista = null;
 	
@@ -24,7 +27,7 @@ public class VacanteServiceImpl implements IVacanteService{
 			vacante1.setSalario(15000.0);
 			vacante1.setDestacado(0);
 			vacante1.setEstatus("Activo");
-			vacante1.setImagenlistar("empresa1.jpg");
+			vacante1.setImagen("empresa1.jpg");
 			
 //			Oferta de trabajo 2
 			
@@ -37,7 +40,7 @@ public class VacanteServiceImpl implements IVacanteService{
 			vacante2.setSalario(80000.0);
 			vacante2.setEstatus("Activo");
 			vacante2.setDestacado(1);
-			vacante2.setImagenlistar("ing-sistemas.jpg");
+			vacante2.setImagen("ing-sistemas.jpg");
 			
 			
 			Vacante vacante3 = new Vacante();
@@ -81,6 +84,13 @@ public class VacanteServiceImpl implements IVacanteService{
 	
 	public void salvar(Vacante vacante) {
 		lista.add(vacante);
+	}
+
+
+	@Override
+	public List<Vacante> buscarDestacadas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

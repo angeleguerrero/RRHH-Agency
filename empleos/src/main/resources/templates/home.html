@@ -36,20 +36,21 @@
 			</div>
 		</div>
 		<hr>
-
+<!-- th:src="@{/images/empresa1.jpg}"  -->
 		<div class="container">
 			<h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
 			<hr>
 			<div class="row" th:each="tempVacante: ${vacantes}">
 				<div class="col-md-3">
 					<img class="rounded mx-auto d-block"
-						th:src="@{/images/{tempImg}(tempImg=${tempVacante.imagenlistar})}"
+						th:src="@{/logos/{tempImg}(tempImg=${tempVacante.imagen})}"
+						
 						alt="Generic placeholder image" width="130" height="120">
 				</div>
 				<div class="col-md-9">
 					<h2 th:text="${tempVacante.nombre}"></h2>
 					<h6 class="card-title">
-						<strong>Categoría: </strong> <span></span>
+						<strong>Categoría: </strong> <span th:text="${tempVacante.categoria.nombre}"></span>
 					</h6>
 					<h6 class="card-title">
 						<strong>Publicado: </strong> <span th:text="${tempVacante.fecha}"></span>

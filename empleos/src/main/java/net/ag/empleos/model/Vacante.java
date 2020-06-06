@@ -25,7 +25,7 @@ double salario;
 private String estatus;
 private String detalles;
 private Integer destacado;
-private String imagenlistar="escuela.png";
+private String imagen;
 /*Ignorar atribito para futuro Mapeo*/
 //@Transient
 @OneToOne
@@ -55,11 +55,11 @@ public String getDetalles() {
 public void setDetalles(String detalles) {
 	this.detalles = detalles;
 }
-public String getImagenlistar() {
-	return imagenlistar;
+public String getImagen() {
+	return imagen;
 }
-public void setImagenlistar(String imagenlistar) {
-	this.imagenlistar = imagenlistar;
+public void setImagen(String imagenlistar) {
+	this.imagen = imagenlistar;
 }
 public Integer getDestacado() {
 	return destacado;
@@ -101,7 +101,7 @@ public void setSalario(double salario) {
 public String toString() {
 	return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
 			+ ", salario=" + salario + ", estatus=" + estatus + ", detalles=" + detalles + ", destacado=" + destacado
-			+ ", imagenlistar=" + imagenlistar + ", categoria=" + categoria + "]";
+			+ ", imagen=" + imagen + ", categoria=" + categoria + "]";
 }
 
 
