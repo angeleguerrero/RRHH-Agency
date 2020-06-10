@@ -9,5 +9,5 @@ public interface ICategoriaService {
 	void salvar (Categoria categoria);
 	List<Categoria> buscarTCategorias();
 	Categoria buscarporID(Integer idCategoria);
-
+	void eliminar (Integer idvacante);
 }

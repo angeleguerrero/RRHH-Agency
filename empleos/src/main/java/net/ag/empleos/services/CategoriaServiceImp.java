@@ -75,4 +75,13 @@ public CategoriaServiceImp() {
 		return null;
 	}
 
+
+
+
+	@Override
+	public void eliminar(Integer idvacante) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

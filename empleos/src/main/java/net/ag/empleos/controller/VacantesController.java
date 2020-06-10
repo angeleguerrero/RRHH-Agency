@@ -1,8 +1,11 @@
 package net.ag.empleos.controller;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +17,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,28 +78,27 @@ public class VacantesController {
 			}
 		}
 		
-		
 		serviceVacantes.salvar(vacante);
 		atributes.addFlashAttribute("msj", "Registro Salvado con Exito!");
-		
 	System.out.println("Vacante: " + vacante);
 	return "redirect:/vacantes/listar";
 	
 }
 	
 
-	@GetMapping("/eliminar")
-	public String eliminarVacante(@RequestParam("idvacante") int idVacante, Model model) {
+	@GetMapping("/eliminar/{idvacante}")
+	public String eliminarVacante(@PathVariable("idvacante") int idVacante,  RedirectAttributes attributes) {
 		System.out.println("Borrando parametros con id" + idVacante);
-		model.addAttribute("idvacante", idVacante);
-
-		return "deleteVacante";
+		attributes.addFlashAttribute("msj", "La vacante fue eliminada");
+		//model.addAttribute("idvacante", idVacante);
+		serviceVacantes.eliminar(idVacante);
+		return  "redirect:/vacantes/listar";
 
 	}
 
 	@GetMapping("/crear")
 	public String crearVancante(Vacante vacante, Model model) {
-		model.addAttribute("categorias", serviceCategoria.buscarTCategorias());
+//		model.addAttribute("categoria", serviceCategoria.buscarTCategorias());
 		return "vacantes/formVacante";
 	}
 	
@@ -114,6 +117,19 @@ public class VacantesController {
 		
 	}
 	
+	@GetMapping("/editar/{idvacante}")
+	public String editar(@PathVariable("idvacante") int idVacante, Model model) {
+	Vacante vacante = serviceVacantes.buscarPorID(idVacante);
+	model.addAttribute("vacante",vacante );
+	return "vacantes/formVacante";	
+	}
+	
+	
+//	Para usar modelos que se repetiran en los diferentes controladores
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("categoria", serviceCategoria.buscarTCategorias());
+	}
 	
 	
 }

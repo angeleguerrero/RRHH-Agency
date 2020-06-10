@@ -57,8 +57,8 @@
 				class="badge badge-success"> Si </span> <span
 				th:unless="${tempVacante.destacado==1}" class="badge badge-danger">No </span></td>
 				<td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a href="#" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/vacantes/editar/{tempIdVac} (tempIdVac=${tempVacante.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/vacantes/eliminar/{tempIdVac} (tempIdVac=${tempVacante.id})}" onclick="return confirm('¿Estas seguro que deseas eliminar el registro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
 
 				 

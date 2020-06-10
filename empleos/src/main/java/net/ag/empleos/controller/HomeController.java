@@ -36,8 +36,6 @@ private  IVacanteService serviceVacantes;
 		model.addAttribute("vacantes", serviceVacantes.buscarDestacadas());
 		
 	}
-	
-	
 	@GetMapping("/listado")
 	public String mostratListado(Model model) {
 		List<String> lista = new LinkedList<String>();
@@ -55,16 +53,12 @@ private  IVacanteService serviceVacantes;
 	@GetMapping("/detallevacante")
 	public String mostrarDetalleVacante(Model model) {
 		Vacante vacante = new Vacante();
-		
 		vacante.setNombre("Ingeniero Comunicaciones");
 		vacante.setDescripcion("Se solicita ingeniero para dar soporte a intranet");
 		vacante.setFecha(new Date());
 		vacante.setSalario(9700.0);
-		
 		model.addAttribute("vacante", vacante);
-		
 		return"vacantes/detallevacante";
-		
 	}
 	
 	@GetMapping("/listarvacantes")
@@ -74,6 +68,11 @@ private  IVacanteService serviceVacantes;
 		return "listar";
 		
 	}
+	
+	
+	
+	
+	
 }
 
 

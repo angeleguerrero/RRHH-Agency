@@ -8,12 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.ag.empleos.model.Categoria;
+import net.ag.empleos.model.Vacante;
 import net.ag.empleos.services.ICategoriaService;
 
 @Controller
@@ -56,7 +60,24 @@ public class CategoriasController {
 	}
 	
 	
+	@GetMapping("/eliminar/{idcategoria}")
+	public String eliminarCategoria(@PathVariable("idcategoria") int idCategporia,  RedirectAttributes attributes) {
+		System.out.println("Borrando parametros con id" + idCategporia);
+		attributes.addFlashAttribute("msj", "La Categoria fue eliminada");
+		//model.addAttribute("idvacante", idVacante);
+		serviceCategoria.eliminar(idCategporia);
+		return  "redirect:/categorias/listar";
+
+	}
 	
 	
+	@GetMapping("/editar/{idcategoria}")
+	public String editar(@PathVariable("idcategoria") int idCategoria, Model model) {
+	Categoria categoria = serviceCategoria.buscarporID(idCategoria);
+	model.addAttribute("categorias",categoria );
+	return "categorias/createCategoria";	
+	}
+	
+
 
 }

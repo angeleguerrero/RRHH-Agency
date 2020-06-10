@@ -48,8 +48,8 @@
 			<td th:text="${tempCategorias.nombre}"></td>
 			<td th:text="${tempCategorias.descripcion}"></td>
 				<td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a href="#" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                     <a th:href="@{/categorias/editar/{tempIdCat} (tempIdCat=${tempCategorias.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/categorias/eliminar/{tempIdCat} (tempIdCat=${tempCategorias.id})}" onclick="return confirm('¿Estas seguro que desea eliminar la categoria?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
 
                   </tr> 

@@ -42,6 +42,8 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{imagen}"/>
                     <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Titulo de la oferta de trabajo" required="required">
                   </div>
                 </div>
@@ -57,7 +59,7 @@
                   <div class="form-group">
                     <label for="categoria">Categoría</label>
                     <select class="form-control" th:field="*{categoria.id}" name="categoria">
-                      <option th:each="tempCategorias : ${categorias}" 
+                      <option th:each="tempCategorias : ${categoria}" 
                       th:value="${tempCategorias.id}" 
                       th:text="${tempCategorias.nombre}">Ventas</option>
 <!--                       <option value="2">Contabilidad</option> -->
@@ -117,7 +119,7 @@
                 </div> 
                 <div class="col-md-3">
                   <label for="imagen">Imagen/Logo</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/images/empresa1.jpg}" alt="Generic placeholder image" width="200" height="200">            
+                  <img class="rounded mx-auto d-block" th:src="@{/logos/{tempImg} (tempImg=${vacante.imagen})}" alt="Generic placeholder image" width="200" height="200">            
                 </div>
               </div> 
               <button type="submit" class="btn btn-primary">Guardar</button>  

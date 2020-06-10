@@ -40,7 +40,8 @@
 		<div class="container">
 			<h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
 			<hr>
-			<div class="row" th:each="tempVacante: ${vacantes}">
+			<div class="row" th:each="tempVacante: ${vacantes}"> 
+<!-- 			bean=>> vacantes -->
 				<div class="col-md-3">
 					<img class="rounded mx-auto d-block"
 						th:src="@{/logos/{tempImg}(tempImg=${tempVacante.imagen})}"

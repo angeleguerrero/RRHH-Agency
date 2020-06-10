@@ -10,6 +10,9 @@ Vacante buscarPorID(Integer idvacante);
 void salvar(Vacante vacante);
 List<Vacante>buscarDestacadas();
 
+void eliminar (Integer idvacante);
+
+
 }
 
 

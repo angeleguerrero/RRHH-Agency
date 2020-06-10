@@ -1,5 +1,6 @@
 package net.ag.empleos.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -12,8 +13,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vacantes")
-public class Vacante {
+public class Vacante implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
