@@ -18,7 +18,7 @@
 
   <body>
 
-    <header th:insert="fragments/menu :: menu-principal"></header>
+   <header th:insert="fragments/menu :: principal-menu"> </header> 
 
     <main role="main">     
       <hr>
@@ -36,21 +36,47 @@
                   <th scope="col">Username</th>                  
                   <th scope="col">Email</th>
                   <th scope="col">Estatus</th>
+<!--                   <th scope="col">Tipo Usuario</th> -->
                   <th scope="col">Operaciones</th>
                 </tr>
               </thead>
+              
+              
               <tbody>
-                <tr th:each="usuario : ${usuarios}">
-                  <td th:text="${usuario.nombre}">Iván Eliseo Tinajero Díaz</td>
-                  <td th:text="${usuario.username}">itinajero</td>                  
-                  <td th:text="${usuario.email}">ivanetinajero@gmail.com</td>
-                  <td th:text="${usuario.estatus == 1 ? 'Activo' : 'Bloqueado' }">Activo</td>
-                  
-                  <td>
-                    <a th:href="@{/usuarios/delete/{id} (id=${usuario.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
-                    <a href="#" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	
+             
+                 <tr th:each="tempUsuario:${usuarios}">
+		
+			
+			<td th:text="${tempUsuario.nombre}"></td>
+			<td th:text="${tempUsuario.username}"></td>
+			<td th:text="${tempUsuario.email}"></td>
+			<td><span th:if="${tempUsuario.estatus==1}"
+				class="badge badge-success"> Activo </span> <span
+				th:unless="${tempUsuario.estatus==1}" class="badge badge-danger">Inactivo </span></td>
+			
+<!-- 			<td th:text="${tempUsuario.perfiles.perfil}"></td>  -->
+			
+			<td>
+                                        <a th:href="@{/usuarios/eliminar/{tempIdUsu} (tempIdUsu=${tempUsuario.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    
+                 <a href="" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	
                   </td>
-                </tr>                
+
+				 
+
+<!-- 			<td><a -->
+<!-- 				th:href="@{/vacantes/eliminar(idvacante=${tempVacante.id})}" -->
+<!-- 				class="btn btn-danger">Eliminar</a></td> -->
+<!-- 		</tr> -->
+                  </tr> 
+             
+             
+             
+             
+             
+             
+             
+                           
                                
               </tbody>
             </table>
@@ -61,7 +87,7 @@
 
     </main>
 
-    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+      	<footer th:insert="fragments/footer :: footer" class="footer" ></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

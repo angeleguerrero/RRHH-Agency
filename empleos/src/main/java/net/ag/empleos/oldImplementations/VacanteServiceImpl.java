@@ -1,4 +1,4 @@
-package net.ag.empleos.services;
+package net.ag.empleos.oldImplementations;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import net.ag.empleos.model.Vacante;
+import net.ag.empleos.services.IVacanteService;
 
 @Service
 //@Primary

@@ -39,7 +39,7 @@ public class Usuario {
 	//******************************************************
 	
 	//Para agregar Perfiles correspondientes a un usuarios
-	public void agregarUsuario(Perfil tempPerfil) {
+	public void agregarPerfilUser(Perfil tempPerfil) {
 		if (perfiles== null) {
 			perfiles= new LinkedList<Perfil>();
 			

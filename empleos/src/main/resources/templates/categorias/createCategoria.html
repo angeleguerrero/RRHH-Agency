@@ -30,12 +30,12 @@
           
             <form th:action="@{/categorias/salvar}" method="post" th:object="${categorias}">  
             
-<!--             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>            -->
-<!-- 				Favor Verificar los siguientes errores: ==> -->
-<!--             <ul> -->
-<!--             <li th:each="error : ${#fields.errors('*')}" th:text="${error}"/> -->
-<!--             </ul> -->
-<!--             </div> -->
+            <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>           
+				Favor Verificar los siguientes errores: ==>
+            <ul>
+            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"/>
+            </ul>
+            </div> 
             
                         
               <div class="row">

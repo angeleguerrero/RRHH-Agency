@@ -1,4 +1,4 @@
-package net.ag.empleos.services;
+package net.ag.empleos.oldImplementations;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import net.ag.empleos.model.Categoria;
+import net.ag.empleos.services.ICategoriaService;
 
 @Service
 //@Primary

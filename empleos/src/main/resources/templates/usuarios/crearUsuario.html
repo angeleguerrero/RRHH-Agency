@@ -17,7 +17,7 @@
 
   <body>
 
-    <header th:insert="fragments/menu :: menu-principal"></header>
+    <header th:insert="fragments/menu :: principal-menu"> </header>
 
     <main role="main">     
       <hr>
@@ -26,7 +26,16 @@
         <div class="card">
           <h4 class="card-header"><strong>Formulario de registro</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/signup}" th:object="${usuario}" method="post">              
+            <form th:action="@{/registrarse}" th:object="${usuario}" method="post" enctype="multipart/form-data">        
+            
+             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>           
+				Favor Verificar los siguientes errores: ==>
+            <ul>
+            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"/>
+            </ul>
+            </div> 
+            
+                  
               <div class="row">
                 <div class="col-md-3"> 
                   <div class="form-group">
@@ -52,9 +61,28 @@
                     <input type="password" class="form-control" th:field="*{password}" id="password" name="password" placeholder="Escriba su clave de acceso" required="required">
                   </div>
                 </div>
-              </div>                  
+                
+<!--                 <div class="col-md-3">  -->
+<!--                   <div class="form-group"> -->
+<!--                     <label for="usuario">Perfil Usuario</label> -->
+<!--                     <select class="form-control" th:field="*{perfil.id}" name="perfil"> -->
+<!--                       <option th:each="tempUsuarios : ${perfil}"  -->
+<!--                       th:value="*{perfil.id}"  -->
+<!--                       th:text="*{perfil.perfil}"></option> -->
+                   
+<!--                     </select> -->
+<!--                   </div> -->
+<!--                 </div> -->
+                
+                
+                
+              </div> 
+              
+               
+              
+                               
               <hr>
-              <button type="submit" title="Quiero registrarme." class="btn btn-primary">Registrarse</button>  
+              <button type="submit" title="Quiero registrarme" class="btn btn-primary">Registrarse</button>  
             </form>
           </div>
         </div>
@@ -62,7 +90,7 @@
 
     </main>
 
-    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+    <footer th:insert="fragments/footer :: footer" class="footer" ></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

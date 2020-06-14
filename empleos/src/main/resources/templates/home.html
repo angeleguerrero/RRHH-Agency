@@ -25,11 +25,11 @@
 						id="exampleFormControlInput1" placeholder="Escriba una búsqueda">&nbsp;
 					<select class="custom-select custom-select mb-3">
 						<option selected>Seleccione una categoría</option>
-						<option value="1">Ventas</option>
-						<option value="2">Contabilidad</option>
-						<option value="3">Transporte</option>
-						<option value="4">Informática</option>
-						<option value="5">Construcción</option>
+						<option th:each="tempCategoria : ${categorias}" 
+						th:value="${tempCategoria.id}"
+						th:text="${tempCategoria.nombre}"
+						></option>
+						
 					</select>&nbsp;
 					<button type="submit" class="btn btn-primary mb-3">Buscar</button>
 				</form>

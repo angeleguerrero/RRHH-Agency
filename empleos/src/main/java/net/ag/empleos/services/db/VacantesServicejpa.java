@@ -19,7 +19,6 @@ public class VacantesServicejpa implements IVacanteService{
 	
 	@Override
 	public List<Vacante> buscarTodas() {
-		
 		return vrepository.findAll();
 	}
 

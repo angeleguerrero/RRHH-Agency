@@ -114,7 +114,6 @@ public class VacantesController {
 		List<Vacante> lista = serviceVacantes.buscarTodas();
 		model.addAttribute("vacantes", lista);
 		return"vacantes/listVacantes";
-		
 	}
 	
 	@GetMapping("/editar/{idvacante}")
