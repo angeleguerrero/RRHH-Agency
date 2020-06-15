@@ -22,15 +22,15 @@ public class Vacante implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
-private int id;
+private Integer id;
 private String nombre;
 private String descripcion;
 private Date fecha;
-double salario;
+Double salario;
 private String estatus;
 private String detalles;
 private Integer destacado;
-private String imagen;
+private String imagen="no-image.png";
 /*Ignorar atribito para futuro Mapeo*/
 //@Transient
 @OneToOne
@@ -40,6 +40,9 @@ private Categoria categoria;
 
 
 
+public void resetimagen() {
+	this.imagen=null;
+}
 
 public Categoria getCategoria() {
 	return categoria;
@@ -72,12 +75,16 @@ public Integer getDestacado() {
 public void setDestacado(Integer destacado) {
 	this.destacado = destacado;
 }
-public int getId() {
+
+
+public Integer getId() {
 	return id;
 }
-public void setId(int id) {
+
+public void setId(Integer id) {
 	this.id = id;
 }
+
 public String getNombre() {
 	return nombre;
 }
@@ -96,12 +103,15 @@ public Date getFecha() {
 public void setFecha(Date fecha) {
 	this.fecha = fecha;
 }
-public double getSalario() {
+
+public Double getSalario() {
 	return salario;
 }
-public void setSalario(double salario) {
+
+public void setSalario(Double salario) {
 	this.salario = salario;
 }
+
 @Override
 public String toString() {
 	return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha

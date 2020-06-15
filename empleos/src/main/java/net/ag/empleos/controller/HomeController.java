@@ -3,8 +3,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -93,9 +98,35 @@ private ICategoriaService serviceCategoria;
 	public void setGenericos(Model model) {
 		model.addAttribute("vacantes", serviceVacantes.buscarDestacadas());
 		model.addAttribute("categorias" , serviceCategoria.buscarTCategorias());
+		Vacante vacanteBuscar = new Vacante();
+		model.addAttribute("buscarvacante", vacanteBuscar );
+		vacanteBuscar.resetimagen();
 //		model.addAttribute("tusuario", serviceUsuario.buscarTUsuarios());
 		
 	}
+	
+	
+	@GetMapping("/buscarvacante")	
+	public String buscarVacante(@ModelAttribute("buscarvacante") Vacante vacante, Model model) {
+		
+//		PARA USAR LIKE EN VEZ DE = IGUAL PARA BUSQUEDA LIKE =%?%
+		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("descripcion", ExampleMatcher.GenericPropertyMatchers.contains());
+		Example<Vacante> example = Example.of(vacante, matcher);
+		List<Vacante>lista = serviceVacantes.buscarByExample(example);
+		model.addAttribute("vacantes", lista);
+		System.out.println("Buscando por:"+ vacante);
+		return "home";
+	}
+	
+//	Metodo para cuando un valor sea detactado vacio lo cambie a null
+	@InitBinder
+	public void InitBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+		
+	}
+	
+	
+	
 	@GetMapping("/listado")
 	public String mostratListado(Model model) {
 		List<String> lista = new LinkedList<String>();
