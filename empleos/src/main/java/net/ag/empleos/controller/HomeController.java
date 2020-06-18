@@ -46,6 +46,9 @@ private ICategoriaService serviceCategoria;
 				return "home";
 	}
 	
+	
+	
+	
 //	CREAR USUARIO
 	@GetMapping("/singup")
 	public String registrarse(Usuario usuario) {

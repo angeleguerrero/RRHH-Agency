@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -81,7 +83,7 @@ public class VacantesController {
 		serviceVacantes.salvar(vacante);
 		atributes.addFlashAttribute("msj", "Registro Salvado con Exito!");
 	System.out.println("Vacante: " + vacante);
-	return "redirect:/vacantes/listar";
+	return "redirect:/vacantes/listarPaginate";
 	
 }
 	
@@ -109,12 +111,26 @@ public class VacantesController {
 		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));	
 	}
 	
+	
+//	MOSTRAR INDEX NORMAL
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public String mostrarIndex(Model model) {
 		List<Vacante> lista = serviceVacantes.buscarTodas();
 		model.addAttribute("vacantes", lista);
 		return"vacantes/listVacantes";
 	}
+	
+	
+	
+//	MOSTRAR INDEX CON PAGINACION
+	@GetMapping(value = "/listarPaginate")
+	public String mostrarIndexPaginacion(Model model, Pageable page) {
+		Page<Vacante>lista = serviceVacantes.buscarTodas_page(page);
+		model.addAttribute("vacantes", lista);
+		return"vacantes/listVacantes";
+		
+	}
+	
 	
 	@GetMapping("/editar/{idvacante}")
 	public String editar(@PathVariable("idvacante") int idVacante, Model model) {
@@ -129,6 +145,9 @@ public class VacantesController {
 	public void setGenericos(Model model) {
 		model.addAttribute("categoria", serviceCategoria.buscarTCategorias());
 	}
+	
+	
+	
 	
 	
 }

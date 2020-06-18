@@ -55,7 +55,7 @@
 						<strong>Categoría: </strong> <span th:text="${tempVacante.categoria.nombre}"></span>
 					</h6>
 					<h6 class="card-title">
-						<strong>Publicado: </strong> <span th:text="${tempVacante.fecha}"></span>
+						<strong>Publicado: </strong> <span th:text="${#dates.format(tempVacante.fecha, 'dd-MM-yyyy HH:mm')}"></span>
 					</h6>
 					<p th:text="${tempVacante.nombre}"></p>
 					<a class="btn btn-secondary"

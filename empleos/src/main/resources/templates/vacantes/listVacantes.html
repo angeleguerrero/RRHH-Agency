@@ -71,6 +71,19 @@
               </tbody>
             </table>
             
+<!--             PAGINACION -->
+            <nav th:if="${vacantes.totalPages > 0}" aria-label="Page navigation example">
+            <ul class="pagination">
+            <li class="page-item"><a th:href="@{/vacantes/listarPaginate(page=${vacantes.number - 1})}" class="page-link">Anterior</a> </li>
+            <li class="page-item"><a th:href="@{/vacantes/listarPaginate(page=${vacantes.number + 1})}" class="page-link">Siguiente</a> </li>
+            
+            </ul>
+            </nav>
+<!--             END PAGINACION -->
+            
+            
+            
+            
           </div>
         </div>
       </div> <!-- /container -->

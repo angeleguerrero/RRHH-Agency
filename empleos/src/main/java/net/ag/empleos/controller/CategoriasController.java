@@ -3,6 +3,8 @@ package net.ag.empleos.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 //import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +49,7 @@ public class CategoriasController {
 		serviceCategoria.salvar(categoria);
 		atributes.addFlashAttribute("msj","Registro Salvado con Exito!");	
 		System.out.println("Categorias: " + categoria);
-		return "redirect:/categorias/listar";
+		return "redirect:/categorias/listarPaginate";
 	}
 	
 	
@@ -57,6 +59,16 @@ public class CategoriasController {
 		List<Categoria> lista = serviceCategoria.buscarTCategorias();
 		model.addAttribute("categorias", lista);
 		return "categorias/listarCategorias";
+	}
+	
+	
+//	MOSTRAR INDEX CON PAGINACION
+	@GetMapping(value = "/listarPaginate")
+	public String mostrarIndexPaginacion(Model model, Pageable page) {
+		Page<Categoria>lista = serviceCategoria.buscarTodas_page(page);
+		model.addAttribute("categorias", lista);
+		return"categorias/listarCategorias";
+		
 	}
 	
 	
