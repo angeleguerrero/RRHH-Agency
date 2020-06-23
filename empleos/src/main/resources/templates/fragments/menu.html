@@ -24,16 +24,17 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/vacantes/crear">Crear Vacante</a>
-          <a class="dropdown-item" href="/vacantes/listarPaginado" >Lista de Vacantes</a>
+          <a class="dropdown-item" href="../vacantes/listarPaginate" >Lista de Vacantes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/categorias/create">Crear Categoria</a>
-          <a class="dropdown-item" href="/categorias/listar">Listar Categoria</a>
+          <a class="dropdown-item" href="/categorias/listarPaginate">Listar Categoria</a>
         </div>
       </li>
                       
           </ul>  
           <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
-          <a class="btn btn-primary" href="/singup">Registrarse</a>
+          <a class="btn btn-primary" href="/singup">Registrarse</a>&nbsp;
+          <a class="btn btn-primary" th:href="@{/logout}">Salir</a>&nbsp;
         </div>
       </nav>
 
