@@ -1,6 +1,6 @@
 package net.ag.empleos.security;
 
-import javax.annotation.security.PermitAll;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 
 @Configuration
 @EnableWebSecurity
@@ -43,10 +44,21 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 				"/viewe"
 				).permitAll()
 		
+		
+		
+//		Permisos a modulos por roles
+		.antMatchers("/vacantes/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
+		.antMatchers("/categorias/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
+		.antMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR")
+		
+		
 		//Todas las demas URL de la aplicacion requieren autenticacion
 		.anyRequest().authenticated()
 		.and().formLogin().permitAll();
 		
+		
+		
+
 		
 		
 	}

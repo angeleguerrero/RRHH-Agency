@@ -11,32 +11,33 @@
             </li>
           
             
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
         <a class="nav-link " href="/inicio" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Entidades
         </a>
        
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/vacantes/crear">Crear Vacante</a>
-          <a class="dropdown-item" href="../vacantes/listarPaginate" >Lista de Vacantes</a>
+          <a class="dropdown-item" href="@{/vacantes/crear}">Crear Vacante</a>
+          <a class="dropdown-item" th:href="@{/vacantes/listarPaginate}" >Lista de Vacantes</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/categorias/create">Crear Categoria</a>
-          <a class="dropdown-item" href="/categorias/listarPaginate">Listar Categoria</a>
+          <a class="dropdown-item" th:href="@{/categorias/create}">Crear Categoria</a>
+          <a class="dropdown-item" th:href="@{/categorias/listarPaginate}">Listar Categoria</a>
         </div>
       </li>
       
-        <li class="nav-item">
+     
+        <li class="nav-item"  sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
               <a class="nav-link" th:href="@{/usuarios/listarUsuarios}">Usuarios</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Menu 2</a>
             </li>
-      
+     
                       
           </ul>  
-          <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
-          <a class="btn btn-primary" href="/singup">Registrarse</a>&nbsp;
+          <a class="btn btn-primary" th:href="@{/login}">Ingresar</a>&nbsp;
+          <a class="btn btn-primary" th:href="@{/singup}">Registrarse</a>&nbsp;
           <a class="btn btn-primary" th:href="@{/logout}">Salir</a>&nbsp;
         </div>
       </nav>
