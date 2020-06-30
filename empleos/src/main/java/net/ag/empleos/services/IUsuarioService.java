@@ -8,4 +8,5 @@ public interface IUsuarioService {
 	List<Usuario> buscarTUsuarios();
 	Usuario buscarporID(Integer idUsuario);
 	void eliminar (Integer isusuario);
+	Usuario buscarPoUsername(String username);
 }

@@ -44,6 +44,12 @@ public class UsuarioServidejpa implements IUsuarioService {
 		urepository.deleteById(isusuario);
 		
 	}
+
+	@Override
+	public Usuario buscarPoUsername(String username) {
+
+		return urepository.findByUsername(username);
+	}
 	
 	
 	

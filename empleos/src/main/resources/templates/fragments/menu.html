@@ -36,8 +36,9 @@
      
                       
           </ul>  
-          <a class="btn btn-primary" th:href="@{/login}">Ingresar</a>&nbsp;
+          <a class="btn btn-primary" th:href="@{/inicio}">Ingresar</a>&nbsp;
           <a class="btn btn-primary" th:href="@{/singup}">Registrarse</a>&nbsp;
+          <span th:if="${session.usuario != null}" class="text-light" th:text="'En sesión: ' + ${session.usuario.username}"></span>&nbsp;
           <a class="btn btn-primary" th:href="@{/logout}">Salir</a>&nbsp;
         </div>
       </nav>
