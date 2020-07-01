@@ -18,7 +18,7 @@
        
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="@{/vacantes/crear}">Crear Vacante</a>
+          <a class="dropdown-item" th:href="@{/vacantes/crear}">Crear Vacante</a>
           <a class="dropdown-item" th:href="@{/vacantes/listarPaginate}" >Lista de Vacantes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" th:href="@{/categorias/create}">Crear Categoria</a>
@@ -26,7 +26,7 @@
         </div>
       </li>
       
-     
+<!--      PARA QUE SOLO EL ADMIN TENGA ACCESO AL MENU -->
         <li class="nav-item"  sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
               <a class="nav-link" th:href="@{/usuarios/listarUsuarios}">Usuarios</a>
             </li>
@@ -36,10 +36,17 @@
      
                       
           </ul>  
+          <div sec:authorize="isAnonymous()">
           <a class="btn btn-primary" th:href="@{/inicio}">Ingresar</a>&nbsp;
           <a class="btn btn-primary" th:href="@{/singup}">Registrarse</a>&nbsp;
-          <span th:if="${session.usuario != null}" class="text-light" th:text="'En sesión: ' + ${session.usuario.username}"></span>&nbsp;
+          </div>
+<!--           OBTENER USUARIO EN SESION OLD -->
+<!--           <span th:if="${session.usuario != null}" class="text-light" th:text="'En sesión: ' + ${session.usuario.username}"></span>&nbsp; -->
+			<div sec:authorize="isAuthenticated()">
+			<span class="text-light" >En sesión</span>&nbsp; <span class="text-light" sec:authentication="name"></span>&nbsp;
           <a class="btn btn-primary" th:href="@{/logout}">Salir</a>&nbsp;
+          </div>
+          
         </div>
       </nav>
 

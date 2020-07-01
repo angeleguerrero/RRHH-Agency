@@ -13,6 +13,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,6 +43,9 @@ private IUsuarioService serviceUsuario;
 
 @Autowired
 private ICategoriaService serviceCategoria;
+
+@Autowired
+private PasswordEncoder passwordEncoder;
 
 //HOME OLD
 	@GetMapping({"/"})
@@ -83,6 +87,10 @@ private ICategoriaService serviceCategoria;
 //	GUARDAR USUARIO
 	@PostMapping("/registrarse")
 	public String guardarRegistro(Usuario usuario,BindingResult result, RedirectAttributes attributes) {
+//		Para encriptar password
+		String pswPlano = usuario.getPassword();
+		String pwEncriptado = passwordEncoder.encode(pswPlano);
+		usuario.setPassword(pwEncriptado);
 		usuario.setEstatus(1); //activar usuario por defecto
 		usuario.setFecharegistro(new Date()); // fecha de registro que es la fecha actual del servidor
 		//Agregar objeto a perfil y crear un perfil por defecto al usuario
