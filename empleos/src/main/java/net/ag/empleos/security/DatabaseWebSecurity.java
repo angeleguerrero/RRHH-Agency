@@ -43,6 +43,7 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 		.antMatchers(
 				"/",
 				"/singup",
+				"/registrarse",
 				"/buscarvacante",
 				"/viewe"
 				).permitAll()
