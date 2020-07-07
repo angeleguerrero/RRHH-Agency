@@ -42,10 +42,12 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 		//Vistas publicas que no requieren autenticacon
 		.antMatchers(
 				"/",
+				"/home",
 				"/singup",
 				"/registrarse",
 				"/buscarvacante",
-				"/viewe"
+				"/bcrypt/**",
+				"/viewe/**"
 				).permitAll()
 		
 		
@@ -58,7 +60,7 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 		
 		//Todas las demas URL de la aplicacion requieren autenticacion
 		.anyRequest().authenticated()
-		.and().formLogin().permitAll();
+		.and().formLogin().loginPage("/login").permitAll();
 
 	}
 	
