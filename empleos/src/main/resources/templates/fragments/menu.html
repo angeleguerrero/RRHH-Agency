@@ -1,5 +1,5 @@
   <nav th:fragment="principal-menu" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">EmpleosApp</a>
+        <a class="navbar-brand" th:href="@{/home}">EmpleosApp</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="/inicio">Inicio</a>
+              <a class="nav-link active" th:href="@{/home}">Inicio</a>
             </li>
           
             
@@ -31,7 +31,7 @@
               <a class="nav-link" th:href="@{/usuarios/listarUsuarios}">Usuarios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Menu 2</a>
+              <a class="nav-link" href="#">Acerca</a>
             </li>
      
                       
