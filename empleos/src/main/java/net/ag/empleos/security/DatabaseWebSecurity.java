@@ -56,8 +56,10 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 		
 		
 //		Permisos a modulos por roles
+		 .antMatchers("/solicitudes/create/**","/solicitudes/save/**").hasAuthority("USUARIO")
 		.antMatchers("/vacantes/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
 		.antMatchers("/categorias/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
+		.antMatchers("/solicitudes/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR")
 		.antMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR")
 		
 		

@@ -32,7 +32,34 @@ public class Solicitud {
 	private Usuario usuario; // foreignKey en la tabla de usuarios
 
 
-	//public Solicitud() {}
+	public Solicitud() {}
+
+
+	
+	
+
+
+@Override
+	public String toString() {
+		return "Solicitud [id=" + id + ", fecha=" + fecha + ", comentarios=" + comentarios + ", archivos=" + archivos
+				+ ", vacante=" + vacante + ", usuario=" + usuario + "]";
+	}
+
+
+
+
+
+
+public Vacante getVacante() {
+		return vacante;
+	}
+
+
+	public void setVacante(Vacante vacante) {
+		this.vacante = vacante;
+	}
+
+
 
 
 
@@ -40,11 +67,7 @@ public class Solicitud {
 public Usuario getUsuario() {
 	return usuario;
 }
-@Override
-public String toString() {
-	return "Solicitud [id=" + id + ", fecha=" + fecha + ", comentarios=" + comentarios + ", archivos=" + archivos
-			+ ", vacante=" + vacante + ", usuario=" + usuario + "]";
-}
+
 public void setUsuario(Usuario usuario) {
 	this.usuario = usuario;
 }
